@@ -24,10 +24,6 @@ def popular():
 def genre():
     return 'Genre'
 
-@app.route('/login')
-def login():
-    return 'Login'
-
 @app.route('/logout')
 def logout():
     return 'Logout'

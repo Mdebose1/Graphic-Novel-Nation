@@ -1,4 +1,5 @@
-from flask import render_template, current_app as app
+from flask import current_app as app, render_template, request, redirect, url_for, flash
+from .models import User
 
 @app.route('/posts')
 def posts():
@@ -11,4 +12,18 @@ def user():
 @app.route('/profile')
 def profile():
     return render_template('main/profile.html')
+
+@app.route('/users/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        form_data = request.form
+        user = User.query.filter_by(email=form_data.get('email')).first()
+
+        if user is None:
+            flash('That email address or password cannot be found. Please try again.')
+            return redirect(url_for('login'))
+
+        flash('Log in successful.')
+        return redirect(url_for('home'))
+    return render_template('users/login.html')
 
