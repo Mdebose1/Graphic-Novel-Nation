@@ -2,6 +2,14 @@
 
 {% block content %}
 
+<h2>
+    {% if current_user.is_authenticated %}
+    Welcome, {{current_user.first_name}}!
+    {% else %}
+    Please Log In
+    {% endif %}
+</h2>
+
 <div class="row">
     <div class="col-12">
         <form method="POST">
