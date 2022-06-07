@@ -1,6 +1,8 @@
-from math import prod
-from flask import current_app as app, render_template
+from flask import current_app as app, render_template, flash, redirect, url_for
+from flask_login import current_user
 import stripe
+from .models import Cart
+from app import db
 
 stripe.api_key = "sk_test_51L7nhTKW2PHafdlZ2JG2Qs0B1s93zhy5dxHQTIIwkl11s1qHWLQgpn4nzIDUeXBuApzW1fq5GBZ0snR8Lj9r9Vl500SDgU5KmF"
 
@@ -22,6 +24,24 @@ def items():
 @app.route('/checkout')
 def checkout():
     return 'Checkout'
+
+@app.route('/add/to/cart/<product_id>')
+
+def add_to_cart(product_id):
+    # user_cart = Cart.query.filter_by(user_id=current_user.get_id())
+    # cart_item = user_cart.filter_by(product_id=product_id).first()
+
+    # if cart_item is None:
+    #     cart = Cart(product_id=product_id, user_id=current_user.get_id(), quantity=1)
+    #     db.session.add(cart)
+
+    # else:
+    #     cart_item.quantity += 1    
+    # db.session.commit()
+
+    
+    flash('Item Added')
+    return redirect(url_for('items'))
 
 @app.route('/cart')
 def cart():

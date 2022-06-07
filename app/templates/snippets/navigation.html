@@ -16,7 +16,14 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a class="dropdown-item" href="{{ url_for('items') }}">Items</a>
-                    <a class="dropdown-item" href="{{ url_for('cart') }}">Cart</a>  
+                    <a class="dropdown-item" href="{{ url_for('cart') }}">
+                        Cart
+                        <span class="float-right">
+                            <i class="fa fa-regular fa-shopping-cart"></i> 
+                            <span class="badge badge-pill badge-primary">{{ cart_quantity }}
+                            </span>
+                        </span>
+                    </a>  
                     <a class="dropdown-item" href="{{ url_for('checkout') }}">Checkout</a>
                 </div>
             </li>

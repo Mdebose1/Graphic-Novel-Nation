@@ -29,6 +29,7 @@ def create_app(config_class=Config):
         from app.blueprints.posts import bp as posts_bp
         app.register_blueprint(posts_bp)
 
+        # from app.context.cart import cart_context
 
 
         from app.blueprints.main import errors
